@@ -1,30 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:praktikum/pages/pages.dart';
-import 'package:praktikum/utils/utils.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:praktikum/core/core.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'routes/app_pages.dart';
+
+void main() async {
+  await GetStorage.init();
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class App extends StatelessWidget {
+  const App({super.key});
+
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
-
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Donation App',
-      theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Palette.primaryColor),
-          useMaterial3: true,
-          fontFamily: 'Metropolis',
-          primaryColor: Palette.primaryColor,
-          scaffoldBackgroundColor: Palette.secondaryColor),
-      home: const WelcomePage(),
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Palette.primaryColor,
+        ),
+        useMaterial3: true,
+        fontFamily: 'Metropolis',
+        primaryColor: Palette.primaryColor,
+        scaffoldBackgroundColor: Palette.secondaryColor,
+      ),
     );
   }
 }
