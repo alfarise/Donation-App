@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:praktikum/core/core.dart';
+import 'package:praktikum/routes/app_pages.dart';
 
 import '../../controllers/dashboard_controller.dart';
 
@@ -17,8 +18,7 @@ class TopNavbarWidget extends GetView<DashboardController>
       leading: IconButton(
         icon: const Icon(Icons.menu),
         onPressed: () {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('Menu Icon')));
+          Get.toNamed(Routes.TODOS);
         },
       ),
       backgroundColor: Palette.secondaryColor,
