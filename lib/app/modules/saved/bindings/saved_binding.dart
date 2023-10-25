@@ -5,10 +5,9 @@ import 'package:http/http.dart' as http;
 
 import '../../controllers.dart';
 
-class DashboardBinding extends Bindings {
+class SavedBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<DashboardController>(() => DashboardController());
     Get.lazyPut<SavedController>(
       () => SavedController(
         repository: Repository(

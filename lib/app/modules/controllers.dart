@@ -3,3 +3,4 @@ export 'dashboard/controllers/dashboard_controller.dart';
 export 'home/controllers/home_controller.dart';
 export 'start_campaign/controllers/start_campaign_controller.dart';
 export 'todos/controllers/todos_controller.dart';
+export 'saved/controllers/saved_controller.dart';
