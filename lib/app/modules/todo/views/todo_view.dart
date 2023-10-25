@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../../../data/models/todos_model.dart';
+import 'package:praktikum/app/data/models/todo.dart';
 
-class TodosPage extends StatefulWidget {
-  const TodosPage({super.key});
+class TodoView extends StatefulWidget {
+  const TodoView({super.key});
 
   @override
-  State<TodosPage> createState() => _TodosPageState();
+  State<TodoView> createState() => _TodosPageState();
 }
 
-class _TodosPageState extends State<TodosPage> {
-  late Future<Todos> _futureTodos;
+class _TodosPageState extends State<TodoView> {
+  late Future<Todo> _futureTodos;
 
   @override
   void initState() {
@@ -19,11 +19,11 @@ class _TodosPageState extends State<TodosPage> {
     _futureTodos = fetchTodos();
   }
 
-  Future<Todos> fetchTodos() async {
+  Future<Todo> fetchTodos() async {
     final response = await http
         .get(Uri.parse('https://jsonplaceholder.typicode.com/todos/5'));
-    if(response.statusCode == 200) {
-      return Todos.fromJson(json.decode(response.body));
+    if (response.statusCode == 200) {
+      return Todo.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to load album');
     }
@@ -36,7 +36,7 @@ class _TodosPageState extends State<TodosPage> {
         title: const Text('Fetch Data Example'),
       ),
       body: Center(
-        child: FutureBuilder<Todos>(
+        child: FutureBuilder<Todo>(
           future: _futureTodos,
           builder: (context, snapshot) {
             var state = snapshot.connectionState;

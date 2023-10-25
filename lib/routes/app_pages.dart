@@ -30,8 +30,9 @@ class AppPages {
       binding: AllCampaignBinding(),
     ),
     GetPage(
-        name: _Paths.TODOS,
-        page: () => const TodosPage(),
-        binding: TodosBinding())
+      name: _Paths.TODOS,
+      page: () => const TodoView(),
+      binding: TodoBinding(),
+    ),
   ];
 }

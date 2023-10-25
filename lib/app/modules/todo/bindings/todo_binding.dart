@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 
 import '../../controllers.dart';
 
-class TodosBinding extends Bindings {
+class TodoBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<TodosControlller>(() => TodosControlller());
+    Get.lazyPut<TodoControlller>(() => TodoControlller());
   }
 }
