@@ -10,7 +10,7 @@ class CardCampaignComponent extends StatelessWidget {
 
   final String title;
   final String description;
-  final AssetImage image;
+  final ImageProvider image;
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +51,21 @@ class CardCampaignComponent extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             title,
+            overflow: TextOverflow.ellipsis,
+            softWrap: true,
+            maxLines: 1,
             style: const TextStyle(
-                color: Palette.darkColor,
-                fontSize: 18,
-                fontWeight: FontWeight.w700),
+              color: Palette.darkColor,
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
             description,
+            overflow: TextOverflow.ellipsis,
+            softWrap: true,
+            maxLines: 3,
             style: const TextStyle(fontSize: 14),
           ),
           const Expanded(

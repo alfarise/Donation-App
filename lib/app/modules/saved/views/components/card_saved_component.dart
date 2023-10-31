@@ -11,7 +11,7 @@ class CardSavedComponent extends StatelessWidget {
 
   final String title;
   final String description;
-  final AssetImage image;
+  final ImageProvider image;
 
   @override
   Widget build(BuildContext context) {

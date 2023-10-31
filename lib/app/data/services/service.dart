@@ -12,4 +12,8 @@ class Repository {
   Future getId(id) {
     return apiClient.getId(id);
   }
+
+  Future getTopHeadlines() {
+    return apiClient.getTopHeadlines();
+  }
 }

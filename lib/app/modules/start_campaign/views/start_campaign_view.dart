@@ -19,49 +19,54 @@ class StartCampaignView extends GetView<StartCampaignController> {
         children: <Widget>[
           const StepperWidget(),
           Expanded(
-              child: Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Obx(() => IndexedStack(
-                      index: controller.currentStep.value,
-                      children: const <Widget>[
-                        PhotoFragment(),
-                        DetailsFragment(),
-                        AmountFragment(),
-                      ],
-                    )),
-                TextButton(
-                  style: TextButton.styleFrom(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Obx(() => IndexedStack(
+                        index: controller.currentStep.value,
+                        children: const <Widget>[
+                          PhotoFragment(),
+                          DetailsFragment(),
+                          AmountFragment(),
+                        ],
+                      )),
+                  TextButton(
+                    style: TextButton.styleFrom(
                       foregroundColor: Palette.lightColor,
                       backgroundColor: Palette.primaryColor,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       textStyle: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w500),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                       minimumSize: const Size.fromHeight(50),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8))),
-                  onPressed: () {
-                    if (controller.currentStep.value == 2) {
-                      controller.addNewCampaign(
-                        imagePath: controller.imagePath.value,
-                        title: controller.titleController.text,
-                        description: controller.detailsController.text,
-                        amount: controller.amountController.text,
-                      );
-                      Get.offNamed(Routes.DASHBOARD);
-                      return;
-                    }
-                    controller.nextStep();
-                  },
-                  child: Obx(() => controller.currentStep.value < 2
-                      ? const Text('Continue')
-                      : const Text('Done')),
-                ),
-              ],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onPressed: () {
+                      if (controller.currentStep.value == 2) {
+                        controller.addNewCampaign(
+                          imagePath: controller.imagePath.value,
+                          title: controller.titleController.text,
+                          description: controller.detailsController.text,
+                          amount: controller.amountController.text,
+                        );
+                        Get.offNamed(Routes.DASHBOARD);
+                        return;
+                      }
+                      controller.nextStep();
+                    },
+                    child: Obx(() => controller.currentStep.value < 2
+                        ? const Text('Continue')
+                        : const Text('Done')),
+                  ),
+                ],
+              ),
             ),
-          ))
+          ),
         ],
       ),
     );

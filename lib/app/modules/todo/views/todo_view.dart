@@ -7,10 +7,10 @@ class TodoView extends StatefulWidget {
   const TodoView({super.key});
 
   @override
-  State<TodoView> createState() => _TodosPageState();
+  State<TodoView> createState() => _TodoViewState();
 }
 
-class _TodosPageState extends State<TodoView> {
+class _TodoViewState extends State<TodoView> {
   late Future<Todo> _futureTodos;
 
   @override
@@ -36,22 +36,25 @@ class _TodosPageState extends State<TodoView> {
         title: const Text('Fetch Data Example'),
       ),
       body: Center(
-        child: FutureBuilder<Todo>(
-          future: _futureTodos,
-          builder: (context, snapshot) {
-            var state = snapshot.connectionState;
-            if (state != ConnectionState.done) {
-              return const Center(child: CircularProgressIndicator());
-            } else {
-              if (snapshot.hasData) {
-                return Text(snapshot.data!.title);
-              } else if (snapshot.hasError) {
-                return Center(child: Text('${snapshot.error}'));
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: FutureBuilder<Todo>(
+            future: _futureTodos,
+            builder: (context, snapshot) {
+              var state = snapshot.connectionState;
+              if (state != ConnectionState.done) {
+                return const Center(child: CircularProgressIndicator());
               } else {
-                return const Text('');
+                if (snapshot.hasData) {
+                  return Text(snapshot.data!.title);
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('${snapshot.error}'));
+                } else {
+                  return const Text('');
+                }
               }
-            }
-          },
+            },
+          ),
         ),
       ),
     );
