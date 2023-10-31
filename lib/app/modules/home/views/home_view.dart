@@ -86,6 +86,11 @@ class HomeView extends GetView<HomeController> {
           navigateView: () => Get.toNamed(Routes.ALL_CAMPAIGN),
         ),
         const EventWidget(),
+        SectionTitleComponent(
+          title: 'News',
+          navigateView: () => Get.toNamed(Routes.ALL_CAMPAIGN),
+        ),
+        const NewsWidget(),
       ],
     );
   }

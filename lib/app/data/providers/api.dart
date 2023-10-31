@@ -42,9 +42,10 @@ class ApiClient {
       var response = await httpClient.get(Uri.parse(
           '$newsApiUrl?category=health&country=us&pageSize=5&apiKey=$newsApiKey'));
       if (response.statusCode == 200) {
-        var jsonResponse = json.decode(response.body);
-        var newsModel = News.fromJson(jsonResponse).toJson();
-        return newsModel;
+        // var jsonResponse = json.decode(response.body);
+        // var newsModel = News.fromJson(jsonResponse).toJson();
+        // return newsModel;
+        return News.fromRawJson(response.body);
       } else {
         print('Request failed with status: ${response.statusCode}.');
       }

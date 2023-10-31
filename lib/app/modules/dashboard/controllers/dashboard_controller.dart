@@ -13,8 +13,7 @@ class DashboardController extends GetxController {
 
   void fetchNews() {
     repository.getTopHeadlines().then((data) {
-      print('Data:: ${data['articles']}');
-      _newsList.value = data['articles'];
+      _newsList.value = data.articles;
     });
   }
 
