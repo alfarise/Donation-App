@@ -13,13 +13,13 @@ class AllCampaignWidget extends GetView<AllCampaignController> {
   Widget build(BuildContext context) {
     List<CardCampaignComponent> campaigns = [];
 
-    controller.allCampaignData.forEach((campaign) {
+    for (var campaign in controller.allCampaignData) {
       campaigns.add(CardCampaignComponent(
         title: campaign['title']!,
         description: campaign['description']!,
         image: FileImage(File(campaign['imagePath']!)),
       ));
-    });
+    }
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
       width: double.infinity,
