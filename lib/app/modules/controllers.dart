@@ -4,3 +4,4 @@ export 'home/controllers/home_controller.dart';
 export 'start_campaign/controllers/start_campaign_controller.dart';
 export 'todo/controllers/todo_controller.dart';
 export 'saved/controllers/saved_controller.dart';
+export 'register/controllers/register_controller.dart';

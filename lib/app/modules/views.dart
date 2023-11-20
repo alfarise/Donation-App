@@ -5,3 +5,4 @@ export 'start_campaign/views/start_campaign_view.dart';
 export 'all_campaign/views/all_campaign_view.dart';
 export 'saved/views/saved_view.dart';
 export 'todo/views/todo_view.dart';
+export 'register/views/register_view.dart';

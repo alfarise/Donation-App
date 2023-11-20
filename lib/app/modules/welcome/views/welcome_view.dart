@@ -70,7 +70,9 @@ class WelcomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(Routes.REGISTER);
+              },
               child: const Text('Create Account'),
             ),
           ),
@@ -99,7 +101,7 @@ class WelcomePage extends StatelessWidget {
               },
               child: const Text('Log In as Guest'),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -34,5 +34,10 @@ class AppPages {
       page: () => const TodoView(),
       binding: TodoBinding(),
     ),
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
+    )
   ];
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "98317715529",
+    "project_id": "donation-app-17cec",
+    "storage_bucket": "donation-app-17cec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98317715529:android:77d42c3cb497b519399798",
+        "android_client_info": {
+          "package_name": "com.example.praktikum"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbb7Xz7oTZebgIuvbfh3kN82jdJaJhqos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
