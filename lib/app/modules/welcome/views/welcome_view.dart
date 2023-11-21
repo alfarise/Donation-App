@@ -97,9 +97,9 @@ class WelcomePage extends StatelessWidget {
                 // Navigator.push(context, MaterialPageRoute(builder: (context) {
                 //   return const DashboardPage();
                 // }));
-                Get.toNamed(Routes.DASHBOARD);
+                Get.toNamed(Routes.LOGIN);
               },
-              child: const Text('Log In as Guest'),
+              child: const Text('Log In'),
             ),
           ),
         ],

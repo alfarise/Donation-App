@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:praktikum/app/modules/bindings.dart';
+import 'package:praktikum/app/modules/login/bindings/login_binding.dart';
+import 'package:praktikum/app/modules/login/views/login_view.dart';
 import 'package:praktikum/app/modules/views.dart';
 
 part 'app_routes.dart';
@@ -38,6 +40,11 @@ class AppPages {
       name: _Paths.REGISTER,
       page: () => const RegisterView(),
       binding: RegisterBinding(),
-    )
+    ),
+    GetPage(
+        name: _Paths.LOGIN,
+        page: () => const LoginView(),
+        binding: LoginBinding()
+    ),
   ];
 }

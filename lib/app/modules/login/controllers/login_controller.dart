@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:praktikum/routes/app_pages.dart';
 
-class RegisterController extends GetxController {
+class LoginController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   RxBool isLoading = false.obs;
   final emailController = TextEditingController();
@@ -16,21 +16,20 @@ class RegisterController extends GetxController {
     super.onClose();
   }
 
-  Future<void> registerUser(String email, String password) async {
+  Future<void> loginUser(String email, String password) async {
     try {
       isLoading.value = true;
-      await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+      await _auth.signInWithEmailAndPassword(
+          email: email, password: password
       );
       Get.snackbar(
         'Success',
-        'Registration successful',
+        'Login successful',
       );
       Get.back();
-      Get.toNamed(Routes.LOGIN);
+      Get.toNamed(Routes.DASHBOARD);
     } catch (error) {
-      Get.snackbar('Error', 'Registration failed: $error');
+      Get.snackbar('Error', 'Login failed: $error');
     } finally {
       isLoading.value = false;
     }
