@@ -23,11 +23,11 @@ class RegisterController extends GetxController {
         email: email,
         password: password,
       );
+      Get.back();
       Get.snackbar(
         'Success',
         'Registration successful',
       );
-      Get.back();
       Get.toNamed(Routes.LOGIN);
     } catch (error) {
       Get.snackbar('Error', 'Registration failed: $error');

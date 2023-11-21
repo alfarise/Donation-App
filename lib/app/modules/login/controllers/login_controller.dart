@@ -22,11 +22,11 @@ class LoginController extends GetxController {
       await _auth.signInWithEmailAndPassword(
           email: email, password: password
       );
+      Get.back();
       Get.snackbar(
         'Success',
         'Login successful',
       );
-      Get.back();
       Get.toNamed(Routes.DASHBOARD);
     } catch (error) {
       Get.snackbar('Error', 'Login failed: $error');
