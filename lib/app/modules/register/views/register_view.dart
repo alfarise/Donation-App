@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:praktikum/app/modules/login/views/login_view.dart';
 import 'package:praktikum/core/core.dart';
 import 'package:praktikum/routes/app_pages.dart';
 
@@ -79,10 +78,12 @@ class RegisterView extends GetView<RegisterController> {
               },
               child: const Text('Create Account'),
             ),
-            TextButton(onPressed: () {
-              Get.back();
-              Get.toNamed(Routes.LOGIN);
-            }, child: const Text('Sign In'))
+            TextButton(
+                onPressed: () {
+                  Get.back();
+                  Get.toNamed(Routes.LOGIN);
+                },
+                child: const Text('Sign In'))
           ],
         ),
       ),

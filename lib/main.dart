@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:praktikum/core/core.dart';
 import 'package:praktikum/firebase_options.dart';
+import 'package:praktikum/notification_handler.dart';
 
 import 'routes/app_pages.dart';
 
@@ -12,6 +13,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseMessagingHandler().initPushNotification();
+  await FirebaseMessagingHandler().initLocalNotification();
   runApp(const App());
 }
 
