@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:praktikum/app/modules/login/views/login_view.dart';
 import 'package:praktikum/core/core.dart';
 import 'package:praktikum/routes/app_pages.dart';
 
-import '../controllers/register_controller.dart';
+import '../controllers/login_controller.dart';
 
-class RegisterView extends GetView<RegisterController> {
-  const RegisterView({super.key});
+class LoginView extends GetView<LoginController> {
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -74,15 +73,15 @@ class RegisterView extends GetView<RegisterController> {
                 ),
               ),
               onPressed: () {
-                controller.registerUser(controller.emailController.text,
+                controller.loginUser(controller.emailController.text,
                     controller.passwordController.text);
               },
-              child: const Text('Create Account'),
+              child: const Text('Login Account'),
             ),
             TextButton(onPressed: () {
               Get.back();
-              Get.toNamed(Routes.LOGIN);
-            }, child: const Text('Sign In'))
+              Get.toNamed(Routes.REGISTER);
+            }, child: const Text('Create Account'))
           ],
         ),
       ),
