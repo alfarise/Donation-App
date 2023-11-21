@@ -22,5 +22,8 @@ class DashboardBinding extends Bindings {
         ),
       ),
     );
+    Get.lazyPut<LoginController>(
+      () => LoginController(),
+    );
   }
 }

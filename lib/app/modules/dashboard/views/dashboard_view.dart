@@ -12,7 +12,7 @@ class DashboardView extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TopNavbarWidget(),
+      appBar: TopNavbarWidget(),
       body: Obx(
         () => IndexedStack(
           index: controller.currentIndex.value,

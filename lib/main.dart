@@ -4,14 +4,17 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:praktikum/core/core.dart';
 import 'package:praktikum/firebase_options.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'routes/app_pages.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Get.putAsync(() async => await SharedPreferences.getInstance());
   runApp(const App());
 }
 

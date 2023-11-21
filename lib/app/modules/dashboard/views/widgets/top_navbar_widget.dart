@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:praktikum/app/modules/controllers.dart';
 import 'package:praktikum/core/core.dart';
 import 'package:praktikum/routes/app_pages.dart';
 
@@ -7,7 +8,8 @@ import '../../controllers/dashboard_controller.dart';
 
 class TopNavbarWidget extends GetView<DashboardController>
     implements PreferredSizeWidget {
-  const TopNavbarWidget({super.key});
+  TopNavbarWidget({super.key});
+  final login = Get.find<LoginController>();
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -31,16 +33,20 @@ class TopNavbarWidget extends GetView<DashboardController>
                 const SnackBar(content: Text('Notification Icon')));
           },
         ),
-        Container(
-          width: 28,
-          height: 28,
-          margin: const EdgeInsets.only(right: 16),
-          decoration: const BoxDecoration(
+        GestureDetector(
+          child: Container(
+            width: 28,
+            height: 28,
+            margin: const EdgeInsets.only(right: 16),
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
                   image: AssetImage('assets/images/user.jpg'),
                   fit: BoxFit.fill)),
         ),
+        onTap: () => {
+          login.logout()
+        },),
       ],
     );
   }
