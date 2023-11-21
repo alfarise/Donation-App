@@ -9,6 +9,7 @@ abstract class Routes {
   static const ALL_CAMPAIGN = _Paths.ALL_CAMPAIGN;
   static const TODOS = _Paths.TODOS;
   static const REGISTER = _Paths.REGISTER;
+  static const LOGIN = _Paths.LOGIN;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const ALL_CAMPAIGN = '/all-campaign';
   static const TODOS = '/todos';
   static const REGISTER = '/register';
+  static const LOGIN =  '/login';
 }
