@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:praktikum/core/core.dart';
 import 'package:praktikum/firebase_options.dart';
 import 'package:praktikum/notification_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'routes/app_pages.dart';
 
@@ -16,6 +17,7 @@ void main() async {
   );
   await FirebaseMessagingHandler().initPushNotification();
   await FirebaseMessagingHandler().initLocalNotification();
+  await Get.putAsync(() async => await SharedPreferences.getInstance());
   runApp(const App());
 }
 
