@@ -10,6 +10,7 @@ class AppPages {
   AppPages._();
 
   static const INITIAL = Routes.WELCOME;
+  static const DASHBOARD = Routes.DASHBOARD;
 
   static final routes = [
     GetPage(

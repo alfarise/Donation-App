@@ -18,17 +18,24 @@ void main() async {
   await FirebaseMessagingHandler().initPushNotification();
   await FirebaseMessagingHandler().initLocalNotification();
   await Get.putAsync(() async => await SharedPreferences.getInstance());
-  runApp(const App());
+  runApp(App());
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+  final SharedPreferences _prefs = Get.find<SharedPreferences>();
+  RxBool isLoggedIn = false.obs;
+
+  Future<void> checkLoginStatus() async {
+    isLoggedIn.value = await _prefs.containsKey('user_token');
+  }
 
   @override
   Widget build(BuildContext context) {
+    checkLoginStatus();
     return GetMaterialApp(
       title: 'Donation App',
-      initialRoute: AppPages.INITIAL,
+      initialRoute: isLoggedIn.value ? AppPages.DASHBOARD : AppPages.INITIAL,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
