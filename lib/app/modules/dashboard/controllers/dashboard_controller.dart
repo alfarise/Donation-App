@@ -1,12 +1,15 @@
 import 'package:get/get.dart';
 import 'package:praktikum/app/data/services/service.dart';
 
+import '../../controllers.dart';
+
 class DashboardController extends GetxController {
   DashboardController({required this.repository});
 
   final Repository repository;
   final currentIndex = 0.obs;
   final _newsList = [].obs;
+  final loginController = Get.find<LoginController>();
 
   get newsList => _newsList;
   set newsList(value) => _newsList.value = value;

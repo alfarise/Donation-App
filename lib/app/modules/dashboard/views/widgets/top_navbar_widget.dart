@@ -8,8 +8,7 @@ import '../../controllers/dashboard_controller.dart';
 
 class TopNavbarWidget extends GetView<DashboardController>
     implements PreferredSizeWidget {
-  TopNavbarWidget({super.key});
-  final login = Get.find<LoginController>();
+  const TopNavbarWidget({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -39,14 +38,13 @@ class TopNavbarWidget extends GetView<DashboardController>
             height: 28,
             margin: const EdgeInsets.only(right: 16),
             decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: AssetImage('assets/images/user.jpg'),
-                  fit: BoxFit.fill)),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: AssetImage('assets/images/user.jpg'),
+                    fit: BoxFit.fill)),
+          ),
+          onTap: () => {controller.loginController.logout()},
         ),
-        onTap: () => {
-          login.logout()
-        },),
       ],
     );
   }

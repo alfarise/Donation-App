@@ -1,3 +1,4 @@
+import 'package:appwrite/appwrite.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,13 +19,19 @@ void main() async {
   await FirebaseMessagingHandler().initPushNotification();
   await FirebaseMessagingHandler().initLocalNotification();
   await Get.putAsync(() async => await SharedPreferences.getInstance());
+  Client client = Client();
+  client
+      .setEndpoint('http://localhost/v1')
+      .setProject('6565b36bbdccb3e69b19')
+      .setSelfSigned(status: true);
+  // For self signed certificates, only use for development
   runApp(App());
 }
 
 class App extends StatelessWidget {
   App({super.key});
   final SharedPreferences _prefs = Get.find<SharedPreferences>();
-  RxBool isLoggedIn = false.obs;
+  final RxBool isLoggedIn = false.obs;
 
   Future<void> checkLoginStatus() async {
     isLoggedIn.value = await _prefs.containsKey('user_token');
