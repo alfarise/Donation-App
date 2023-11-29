@@ -33,6 +33,24 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 filled: true,
                 fillColor: Palette.lightColor,
+                prefixIcon: const Icon(Icons.person),
+                hintText: 'Name',
+              ),
+              controller: controller.nameController,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Palette.lightColor),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Palette.lightColor),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                filled: true,
+                fillColor: Palette.lightColor,
                 prefixIcon: const Icon(Icons.mail_outlined),
                 hintText: 'Email',
               ),
@@ -73,7 +91,7 @@ class RegisterView extends GetView<RegisterController> {
                 ),
               ),
               onPressed: () {
-                controller.registerUser(controller.emailController.text,
+                controller.registerUser(controller.nameController.text, controller.emailController.text,
                     controller.passwordController.text);
               },
               child: const Text('Create Account'),

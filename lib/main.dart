@@ -21,8 +21,8 @@ void main() async {
   await Get.putAsync(() async => await SharedPreferences.getInstance());
   Client client = Client();
   client
-      .setEndpoint('http://localhost/v1')
-      .setProject('6565b36bbdccb3e69b19')
+      .setEndpoint('http://cloud.appwrite.io/v1')
+      .setProject('6566886e65d78055e452')
       .setSelfSigned(status: true);
   // For self signed certificates, only use for development
   runApp(App());
