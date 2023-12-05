@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -55,48 +57,48 @@ class StartCampaignController extends GetxController {
         .setEndpoint('https://cloud.appwrite.io/v1')
         .setProject('6566886e65d78055e452');
     // TODO: Upload with Image
-    // Future imgUpResult = storage.createFile(
-    //   bucketId: '656f52923d44b8734c45',
-    //   fileId: ID.unique(),
-    //   file: InputFile.fromPath(path: imagePath),
-    // );
-    //
-    // imgUpResult.then((response) {
-    //
-    //   Get.snackbar('DEBUG', response);
-    //   // imgUrl = response.val()['url'];
-    //
-    //   Future upResult = databases.createDocument(
-    //       databaseId: '65668c80f134d5d24f1b',
-    //       collectionId: '65668c9d78e609d1b353',
-    //       documentId: ID.unique(),
-    //       data: {
-    //         'title': title,
-    //         'description': description,
-    //         'imgUrl': imgUrl
-    //       }
-    //   );
-    //   upResult.then((response) {
-    //     Get.snackbar('Success', 'Post Created Successfully');
-    //   });
-    // }).catchError((error) {
-    //   print(error.response);
-    // });
-
-    Future upResult = databases.createDocument(
-        databaseId: '65668c80f134d5d24f1b',
-        collectionId: '65668c9d78e609d1b353',
-        documentId: ID.unique(),
-        data: {
-          'title': title.toString(),
-          'description': description.toString()
-        },
+    Future imgUpResult = storage.createFile(
+      bucketId: '656f52923d44b8734c45',
+      fileId: ID.unique(),
+      file: InputFile.fromPath(path: imagePath),
     );
-    upResult.then((response) {
-      Get.snackbar('Success', 'Post Created Successfully');
+
+    imgUpResult.then((response) {
+      Map<String, dynamic> data = jsonDecode(response);
+      String fileId = data['\$id'];
+      imgUrl = 'https://cloud.appwrite.io/v1/storage/buckets/656f52923d44b8734c45/files/$fileId/view?project=6566886e65d78055e452&mode=admin`';
+
+      Future upResult = databases.createDocument(
+          databaseId: '65668c80f134d5d24f1b',
+          collectionId: '65668c9d78e609d1b353',
+          documentId: ID.unique(),
+          data: {
+            'title': title,
+            'description': description,
+            'imgUrl': imgUrl
+          }
+      );
+      upResult.then((response) {
+        Get.snackbar('Success', 'Post Created Successfully');
+      });
     }).catchError((error) {
-      Get.snackbar('Error', error.response);
+      Get.snackbar('Error', '$error');
     });
+
+    // Future upResult = databases.createDocument(
+    //     databaseId: '65668c80f134d5d24f1b',
+    //     collectionId: '65668c9d78e609d1b353',
+    //     documentId: ID.unique(),
+    //     data: {
+    //       'title': title.toString(),
+    //       'description': description.toString()
+    //     },
+    // );
+    // upResult.then((response) {
+    //   Get.snackbar('Success', 'Post Created Successfully');
+    // }).catchError((error) {
+    //   Get.snackbar('Error', error.response);
+    // });
 
     allCampaignController.campaignStorage.val =
         allCampaignController.addCampaignData(campaignData);
