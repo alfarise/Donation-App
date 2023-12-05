@@ -28,8 +28,8 @@ class RegisterController extends GetxController {
       // );
       Client client = Client();
       client
-          .setEndpoint('http://10.0.2.2/v1')
-          .setProject('65668fddd2f7242b8716');
+          .setEndpoint('https://cloud.appwrite.io/v1')
+          .setProject('6566886e65d78055e452');
       Account account = Account(client);
       await account.create(
         userId: ID.unique(),

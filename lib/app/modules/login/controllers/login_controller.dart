@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:praktikum/routes/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:appwrite/appwrite.dart';
 
 class LoginController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -24,10 +25,19 @@ class LoginController extends GetxController {
   }
 
   Future<void> loginUser(String email, String password) async {
+    final client = Client()
+        .setEndpoint('https://cloud.appwrite.io/v1')
+        .setProject('6566886e65d78055e452');
+    final account = Account(client);
     try {
-      isLoading.value = true;
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-      _prefs.setString('user_token', _auth.currentUser!.uid);
+      // await _auth.signInWithEmailAndPassword(email: email, password: password);
+      // _prefs.setString('user_token', _auth.currentUser!.uid);
+      Future session = account.createEmailSession(email: email, password: password);
+      session.then((response) {
+        isLoading.value = true;
+        _prefs.setString('user_token', response.$id);
+      }).catchError((error) {
+      });
       Get.back();
       Get.snackbar(
         'Success',
@@ -45,7 +55,6 @@ class LoginController extends GetxController {
     _prefs.remove('user_token');
     isLoggedIn.value = false;
     _auth.signOut();
-    Get.offAllNamed(
-        '/login'); 
+    Get.offAllNamed('/login');
   }
 }
