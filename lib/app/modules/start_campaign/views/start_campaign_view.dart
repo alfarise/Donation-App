@@ -48,12 +48,28 @@ class StartCampaignView extends GetView<StartCampaignController> {
                     ),
                     onPressed: () {
                       if (controller.currentStep.value == 2) {
-                        controller.addNewCampaign(
-                          imagePath: controller.imagePath.value,
-                          title: controller.titleController.text,
-                          description: controller.detailsController.text,
-                          amount: controller.amountController.text,
-                        );
+                        if (controller.id != null) {
+                          controller.updateCampaign({
+                            'imagePath': controller.imagePath.value,
+                            'title': controller.titleController.text,
+                            'description': controller.detailsController.text,
+                            'amount': controller.amountController.text,
+                          });
+                          Get.back();
+                          return;
+                        }
+                        // controller.addNewCampaign(
+                        //   imagePath: controller.imagePath.value,
+                        //   title: controller.titleController.text,
+                        //   description: controller.detailsController.text,
+                        //   amount: controller.amountController.text,
+                        // );
+                        controller.storeCampaign({
+                          'imagePath': controller.imagePath.value,
+                          'title': controller.titleController.text,
+                          'description': controller.detailsController.text,
+                          'amount': controller.amountController.text,
+                        });
                         Get.offNamed(Routes.DASHBOARD);
                         return;
                       }

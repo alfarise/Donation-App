@@ -6,12 +6,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:appwrite/appwrite.dart';
 
 class LoginController extends GetxController {
+  Account? account;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final SharedPreferences _prefs = Get.find<SharedPreferences>();
   RxBool isLoggedIn = false.obs;
   RxBool isLoading = false.obs;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  @override
+  void onInit() {
+    Client client = Client()
+        .setEndpoint('http://10.0.2.2/v1')
+        .setProject('65668fddd2f7242b8716');
+    account = Account(client);
+    super.onInit();
+  }
 
   @override
   void onClose() {
@@ -25,25 +35,23 @@ class LoginController extends GetxController {
   }
 
   Future<void> loginUser(String email, String password) async {
-    final client = Client()
-        .setEndpoint('https://cloud.appwrite.io/v1')
-        .setProject('6566886e65d78055e452');
-    final account = Account(client);
     try {
-      // await _auth.signInWithEmailAndPassword(email: email, password: password);
-      // _prefs.setString('user_token', _auth.currentUser!.uid);
-      Future session = account.createEmailSession(email: email, password: password);
+      Future session = account!.createEmailSession(
+        email: email,
+        password: password,
+      );
       session.then((response) {
         isLoading.value = true;
         _prefs.setString('user_token', response.$id);
+        Get.back();
+        Get.snackbar(
+          'Success',
+          'Login successful',
+        );
+        Get.toNamed(Routes.DASHBOARD);
       }).catchError((error) {
+        Get.snackbar('Error', 'Login failed: $error');
       });
-      Get.back();
-      Get.snackbar(
-        'Success',
-        'Login successful',
-      );
-      Get.toNamed(Routes.DASHBOARD);
     } catch (error) {
       Get.snackbar('Error', 'Login failed: $error');
     } finally {

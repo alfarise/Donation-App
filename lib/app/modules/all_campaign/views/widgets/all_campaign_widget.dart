@@ -11,21 +11,23 @@ class AllCampaignWidget extends GetView<AllCampaignController> {
 
   @override
   Widget build(BuildContext context) {
-    List<CardCampaignComponent> campaigns = [];
-
-    for (var campaign in controller.allCampaignData) {
-      campaigns.add(CardCampaignComponent(
-        title: campaign['title']!,
-        description: campaign['description']!,
-        image: FileImage(File(campaign['imagePath']!)),
-      ));
-    }
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
       width: double.infinity,
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        children: campaigns,
+      child: Obx(
+        () => ListView.builder(
+          itemCount: controller.allCampaignData.length,
+          itemBuilder: (context, index) {
+            final campaign = controller.allCampaignData[index];
+
+            return CardCampaignComponent(
+              id: campaign.id,
+              title: campaign.title!,
+              description: campaign.description!,
+              image: FileImage(File(campaign.imagePath!)),
+            );
+          },
+        ),
       ),
     );
   }
