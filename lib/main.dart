@@ -35,6 +35,9 @@ class App extends StatelessWidget {
 
   Future<void> checkLoginStatus() async {
     isLoggedIn.value = await _prefs.containsKey('user_token');
+    if (isLoggedIn.value) {
+      Get.offNamed(Routes.DASHBOARD);
+    }
   }
 
   @override
