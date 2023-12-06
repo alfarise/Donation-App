@@ -89,7 +89,7 @@ class AllCampaignController extends GetxController {
       print('Data:: $response');
       Get.snackbar(
         'Success',
-        'Create successful',
+        'Delete successful',
       );
     }).catchError((error) {
       Get.defaultDialog(
